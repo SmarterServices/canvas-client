@@ -1,0 +1,6 @@
+{
+  "refreshToken": {
+    "endpoint": "/login/oauth2/token",
+    "method": "POST"
+  }
+}
