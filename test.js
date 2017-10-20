@@ -1,20 +1,20 @@
 'use strict';
 
-const CanvasClient = require('./index');
+const client = require('./index');
 
 const config = {
-  accessToken: '',
+  host: '',
   clientId: '',
   clientSecret: '',
-  refreshToken: ''
+  accessToken: '',
+  refreshToken: '',
+  courseId: 4
 };
 
-const client = new CanvasClient(config);
-
-// client.method()
-//   .then(response => {
-//     console.log(response);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   })
+client.courseEnrollments(config)
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    console.error(error);
+  });
