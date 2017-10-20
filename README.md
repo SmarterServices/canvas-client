@@ -10,14 +10,24 @@ This lib is used as a wrapper around api calls to [Canvas LMS](https://www.canva
 
 ### Requirements
 
-NODE v5.0.1 or higher
+NODE [v6.2.2](https://nodejs.org/en/blog/release/v6.2.2/) or higher.
 
 ### Install Process
 `npm install`
 
 ### Configuration
 ```javascript
-  const Canvas = require('canvas-client');
+  const canvasClient = require('canvas-client');
+  let options = {
+    host: '',         // required
+    clientId: '',     // required
+    clientSecret: '', // required
+    accessToken: '',  // required
+    refreshToken: '', // required
+    courseId: 4
+  };
+  // API calls returns promise
+  canvasClient.courseEnrollments(options);
 ```
 ## Running Application/Code
 
