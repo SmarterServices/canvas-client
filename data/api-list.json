@@ -2,5 +2,9 @@
   "refreshToken": {
     "endpoint": "/login/oauth2/token",
     "method": "POST"
+  },
+  "courseEnrollments": {
+    "endpoint": "/api/v1/courses/{courseId}/enrollments",
+    "method": "GET"
   }
 }
