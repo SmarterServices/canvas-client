@@ -8,12 +8,23 @@ const config = {
   clientSecret: '',
   accessToken: '',
   refreshToken: '',
-  courseId: 4
+  courseId: 4,
+  perPage: 2,
 };
 
 client.courseEnrollments(config)
-  .then(response => {
-    console.log(response);
+  .then(iterator => {
+    let it = iterator;
+    console.log('size', it.size());
+
+    let promise = it.next();
+
+    for(let i=0; i< it.size(); ++i) {
+      promise = promise.then((response) =>{
+        console.log(response.results[0].id);
+        return it.next();
+      })
+    }
   })
   .catch(error => {
     console.error(error);
