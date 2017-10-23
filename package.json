@@ -1,6 +1,6 @@
 {
   "name": "canvas-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Wrapper for canvas LMS API.",
   "main": "index.js",
   "engines": {
