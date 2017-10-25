@@ -6,5 +6,9 @@
   "courseEnrollments": {
     "endpoint": "/api/v1/courses/{courseId}/enrollments",
     "method": "GET"
+  },
+  "courseExams": {
+    "endpoint": "/api/v1/courses/{courseId}/quizzes",
+    "method": "GET"
   }
 }
