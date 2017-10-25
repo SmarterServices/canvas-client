@@ -54,7 +54,18 @@ const schema = {
         .description('Canvas client ID')
     })
     .required()
-    .description('Refresh token schema')
+    .description('Course enrollment list schema'),
+  courseExams: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client ID')
+    })
+    .required()
+    .description('Course exam list schema')
 };
 
 module.exports = schema;
