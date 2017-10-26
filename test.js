@@ -12,8 +12,8 @@ const config = {
   perPage: 2,
 };
 
-client.courseExams(config)
-// client.courseEnrollments(config)
+// client.courseExams(config)
+client.courseEnrollments(config)
   .then(iterator => {
     let it = iterator;
     console.log('size', it.size());
@@ -22,7 +22,7 @@ client.courseExams(config)
 
     for(let i=0; i< it.size(); ++i) {
       promise = promise.then((response) =>{
-        console.log(response);
+        console.log(response.results.length);
         return (i < it.size()-1)
           ? it.next()
           : Promise.resolve();
