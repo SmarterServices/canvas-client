@@ -10,5 +10,9 @@
   "courseExams": {
     "endpoint": "/api/v1/courses/{courseId}/quizzes",
     "method": "GET"
+  },
+  "courseExternalTools": {
+    "endpoint": "/api/v1/courses/{courseId}/external_tools",
+    "method": "GET"
   }
 }
