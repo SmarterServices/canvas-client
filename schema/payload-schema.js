@@ -63,6 +63,15 @@ const schema = {
         .positive()
         .required()
         .description('Canvas client ID')
+    }),
+  courseExternalTools: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client Course ID')
     })
     .required()
     .description('Course exam list schema')

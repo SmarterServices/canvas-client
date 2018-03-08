@@ -13,7 +13,8 @@ const config = {
 };
 
 // client.courseExams(config)
-client.courseEnrollments(config)
+// client.courseEnrollments(config)
+client.listCourseExternalTools(config)
   .then(results => {
     console.log(results);
   })
