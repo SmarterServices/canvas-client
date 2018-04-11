@@ -1,0 +1,18 @@
+{
+  "refreshToken": {
+    "endpoint": "/login/oauth2/token",
+    "method": "POST"
+  },
+  "courseEnrollments": {
+    "endpoint": "/api/v1/courses/{courseId}/enrollments",
+    "method": "GET"
+  },
+  "courseExams": {
+    "endpoint": "/api/v1/courses/{courseId}/quizzes",
+    "method": "GET"
+  },
+  "courseExternalTools": {
+    "endpoint": "/api/v1/courses/{courseId}/external_tools",
+    "method": "GET"
+  }
+}
