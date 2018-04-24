@@ -1,0 +1,536 @@
+{
+  "courseEnrollments": {
+    "endpoint": "/api/v1/courses/{courseId}/enrollments",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": [
+          {
+            "id": 33,
+            "user_id": 2,
+            "course_id": 1,
+            "type": "StudentEnrollment",
+            "created_at": "2017-11-02T20:33:44Z",
+            "updated_at": "2017-11-02T20:34:13Z",
+            "associated_user_id": null,
+            "start_at": null,
+            "end_at": null,
+            "course_section_id": 1,
+            "root_account_id": 1,
+            "limit_privileges_to_course_section": false,
+            "enrollment_state": "active",
+            "role": "StudentEnrollment",
+            "role_id": 3,
+            "last_activity_at": "2018-04-18T07:52:16Z",
+            "last_attended_at": null,
+            "total_activity_time": 2207934,
+            "grades": {
+              "html_url": "https://smarterservices.instructure.com/courses/1/grades/2",
+              "current_score": 70,
+              "current_grade": 3.5,
+              "final_score": null,
+              "final_grade": null,
+              "unposted_current_score": null,
+              "unposted_current_grade": null,
+              "unposted_final_score": null,
+              "unposted_final_grade": null
+            },
+            "sis_account_id": null,
+            "sis_course_id": null,
+            "course_integration_id": null,
+            "sis_section_id": null,
+            "section_integration_id": null,
+            "sis_user_id": null,
+            "html_url": "https://smarterservices.instructure.com/courses/1/users/2",
+            "user": {
+              "id": 2,
+              "name": "Jason Fill Admin",
+              "sortable_name": "Admin, Jason Fill",
+              "short_name": "Jason Fill Admin",
+              "sis_user_id": null,
+              "integration_id": null,
+              "login_id": "jason@smarterservices.com"
+            }
+          },
+          {
+            "id": 27,
+            "user_id": 14,
+            "course_id": 1,
+            "type": "StudentEnrollment",
+            "created_at": "2017-10-10T20:03:18Z",
+            "updated_at": "2017-10-10T20:04:29Z",
+            "associated_user_id": null,
+            "start_at": null,
+            "end_at": null,
+            "course_section_id": 1,
+            "root_account_id": 1,
+            "limit_privileges_to_course_section": false,
+            "enrollment_state": "active",
+            "role": "StudentEnrollment",
+            "role_id": 3,
+            "last_activity_at": "2017-10-15T02:56:39Z",
+            "last_attended_at": null,
+            "total_activity_time": 0,
+            "grades": {
+              "html_url": "https://smarterservices.instructure.com/courses/1/grades/14",
+              "current_score": null,
+              "current_grade": null,
+              "final_score": null,
+              "final_grade": null,
+              "unposted_current_score": null,
+              "unposted_current_grade": null,
+              "unposted_final_score": null,
+              "unposted_final_grade": null
+            },
+            "sis_account_id": null,
+            "sis_course_id": null,
+            "course_integration_id": null,
+            "sis_section_id": null,
+            "section_integration_id": null,
+            "sis_user_id": null,
+            "html_url": "https://smarterservices.instructure.com/courses/1/users/14",
+            "user": {
+              "id": 14,
+              "name": "Jason Demo",
+              "sortable_name": "Demo, Jason",
+              "short_name": "Jason Demo",
+              "sis_user_id": null,
+              "integration_id": null,
+              "login_id": "ja.sonfill@gmail.com"
+            }
+          },
+          {
+            "id": 5,
+            "user_id": 6,
+            "course_id": 1,
+            "type": "StudentEnrollment",
+            "created_at": "2017-07-26T12:38:13Z",
+            "updated_at": "2017-07-26T12:41:02Z",
+            "associated_user_id": null,
+            "start_at": null,
+            "end_at": null,
+            "course_section_id": 1,
+            "root_account_id": 1,
+            "limit_privileges_to_course_section": false,
+            "enrollment_state": "active",
+            "role": "StudentEnrollment",
+            "role_id": 3,
+            "last_activity_at": "2018-03-16T18:20:34Z",
+            "last_attended_at": null,
+            "total_activity_time": 201773,
+            "grades": {
+              "html_url": "https://smarterservices.instructure.com/courses/1/grades/6",
+              "current_score": null,
+              "current_grade": null,
+              "final_score": null,
+              "final_grade": null,
+              "unposted_current_score": null,
+              "unposted_current_grade": null,
+              "unposted_final_score": null,
+              "unposted_final_grade": null
+            },
+            "sis_account_id": null,
+            "sis_course_id": null,
+            "course_integration_id": null,
+            "sis_section_id": null,
+            "section_integration_id": null,
+            "sis_user_id": null,
+            "html_url": "https://smarterservices.instructure.com/courses/1/users/6",
+            "user": {
+              "id": 6,
+              "name": "Fred Flinstone",
+              "sortable_name": "Flinstone, Fred",
+              "short_name": "Fred Flinstone",
+              "sis_user_id": null,
+              "integration_id": null,
+              "login_id": "jasonfill+fred@gmail.com"
+            }
+          },
+          {
+            "id": 6,
+            "user_id": 7,
+            "course_id": 1,
+            "type": "StudentEnrollment",
+            "created_at": "2017-07-26T12:40:02Z",
+            "updated_at": "2017-07-26T12:42:04Z",
+            "associated_user_id": null,
+            "start_at": null,
+            "end_at": null,
+            "course_section_id": 1,
+            "root_account_id": 1,
+            "limit_privileges_to_course_section": false,
+            "enrollment_state": "active",
+            "role": "StudentEnrollment",
+            "role_id": 3,
+            "last_activity_at": "2018-02-09T16:22:08Z",
+            "last_attended_at": null,
+            "total_activity_time": 71905,
+            "grades": {
+              "html_url": "https://smarterservices.instructure.com/courses/1/grades/7",
+              "current_score": null,
+              "current_grade": null,
+              "final_score": null,
+              "final_grade": null,
+              "unposted_current_score": null,
+              "unposted_current_grade": null,
+              "unposted_final_score": null,
+              "unposted_final_grade": null
+            },
+            "sis_account_id": null,
+            "sis_course_id": null,
+            "course_integration_id": null,
+            "sis_section_id": null,
+            "section_integration_id": null,
+            "sis_user_id": null,
+            "html_url": "https://smarterservices.instructure.com/courses/1/users/7",
+            "user": {
+              "id": 7,
+              "name": "Wilma Flinstone",
+              "sortable_name": "Flinstone, Wilma",
+              "short_name": "Wilma Flinstone",
+              "sis_user_id": null,
+              "integration_id": null,
+              "login_id": "jasonfill+wilma@gmail.com"
+            }
+          },
+          {
+            "id": 9,
+            "user_id": 10,
+            "course_id": 1,
+            "type": "StudentEnrollment",
+            "created_at": "2017-07-26T12:40:02Z",
+            "updated_at": "2017-07-26T12:43:04Z",
+            "associated_user_id": null,
+            "start_at": null,
+            "end_at": null,
+            "course_section_id": 1,
+            "root_account_id": 1,
+            "limit_privileges_to_course_section": false,
+            "enrollment_state": "active",
+            "role": "StudentEnrollment",
+            "role_id": 3,
+            "last_activity_at": "2017-07-26T12:43:05Z",
+            "last_attended_at": null,
+            "total_activity_time": 0,
+            "grades": {
+              "html_url": "https://smarterservices.instructure.com/courses/1/grades/10",
+              "current_score": null,
+              "current_grade": null,
+              "final_score": null,
+              "final_grade": null,
+              "unposted_current_score": null,
+              "unposted_current_grade": null,
+              "unposted_final_score": null,
+              "unposted_final_grade": null
+            },
+            "sis_account_id": null,
+            "sis_course_id": null,
+            "course_integration_id": null,
+            "sis_section_id": null,
+            "section_integration_id": null,
+            "sis_user_id": null,
+            "html_url": "https://smarterservices.instructure.com/courses/1/users/10",
+            "user": {
+              "id": 10,
+              "name": "Bamm-Bamm Rubble",
+              "sortable_name": "Rubble, Bamm-Bamm",
+              "short_name": "Bamm-Bamm Rubble",
+              "sis_user_id": null,
+              "integration_id": null,
+              "login_id": "jasonfill+bamm@gmail.com"
+            }
+          },
+          {
+            "id": 7,
+            "user_id": 8,
+            "course_id": 1,
+            "type": "StudentEnrollment",
+            "created_at": "2017-07-26T12:40:02Z",
+            "updated_at": "2017-07-26T12:42:52Z",
+            "associated_user_id": null,
+            "start_at": null,
+            "end_at": null,
+            "course_section_id": 1,
+            "root_account_id": 1,
+            "limit_privileges_to_course_section": false,
+            "enrollment_state": "active",
+            "role": "StudentEnrollment",
+            "role_id": 3,
+            "last_activity_at": "2018-03-27T16:09:43Z",
+            "last_attended_at": null,
+            "total_activity_time": 95362,
+            "grades": {
+              "html_url": "https://smarterservices.instructure.com/courses/1/grades/8",
+              "current_score": null,
+              "current_grade": null,
+              "final_score": null,
+              "final_grade": null,
+              "unposted_current_score": null,
+              "unposted_current_grade": null,
+              "unposted_final_score": null,
+              "unposted_final_grade": null
+            },
+            "sis_account_id": null,
+            "sis_course_id": null,
+            "course_integration_id": null,
+            "sis_section_id": null,
+            "section_integration_id": null,
+            "sis_user_id": null,
+            "html_url": "https://smarterservices.instructure.com/courses/1/users/8",
+            "user": {
+              "id": 8,
+              "name": "Barney Rubble",
+              "sortable_name": "Rubble, Barney",
+              "short_name": "Barney Rubble",
+              "sis_user_id": null,
+              "integration_id": null,
+              "login_id": "jasonfill+barney@gmail.com"
+            }
+          }
+        ]
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
+  "courseExams": {
+    "endpoint": "/api/v1/courses/{courseId}/quizzes",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": [
+          {
+            "id": 2,
+            "title": "Final Exam",
+            "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/2",
+            "description": "<p>This is your final exam, ensure you do well!</p>",
+            "quiz_type": "assignment"
+          },
+          {
+            "id": 1,
+            "title": "Mid Term",
+            "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/1",
+            "description": "<p>This is a mid term exam take it!</p>",
+            "quiz_type": "assignment"
+          },
+          {
+            "id": 7,
+            "title": "Unnamed Quiz",
+            "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/7",
+            "description": null,
+            "quiz_type": "assignment"
+          },
+          {
+            "id": 8,
+            "title": "Unnamed Quiz",
+            "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/8",
+            "description": null,
+            "quiz_type": "assignment"
+          },
+          {
+            "id": 9,
+            "title": "Unnamed Quiz",
+            "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/9",
+            "description": null,
+            "quiz_type": "assignment"
+          }
+        ]
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
+  "courseExternalTools": {
+    "endpoint": "/api/v1/courses/{courseId}/external_tools",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": [
+          {
+            "id": 3,
+            "domain": "signon-stage.smarterservices.com",
+            "url": "https://signon-stage.smarterservices.com/v1/auth/lti?account=canvas",
+            "consumer_key": "jason-sandbox",
+            "name": "Proctoring",
+            "description": "",
+            "created_at": "2017-07-26T12:56:30Z",
+            "updated_at": "2017-07-26T12:56:30Z",
+            "privacy_level": "public",
+            "custom_fields": {},
+            "workflow_state": "public",
+            "vendor_help_link": null,
+            "account_navigation": null,
+            "similarity_detection": null,
+            "assignment_menu": null,
+            "assignment_selection": null,
+            "collaboration": null,
+            "course_assignments_menu": null,
+            "course_home_sub_navigation": null,
+            "course_navigation": {
+              "url": "https://signon-stage.smarterservices.com/v1/auth/lti?account=canvas",
+              "text": "Proctoring",
+              "visibility": "public",
+              "default": "enabled",
+              "enabled": "true",
+              "label": "Proctoring",
+              "selection_width": 800,
+              "selection_height": 400,
+              "icon_url": ""
+            },
+            "course_settings_sub_navigation": null,
+            "discussion_topic_menu": null,
+            "editor_button": null,
+            "file_menu": null,
+            "global_navigation": null,
+            "homework_submission": null,
+            "link_selection": null,
+            "migration_selection": null,
+            "module_menu": null,
+            "post_grades": null,
+            "quiz_menu": null,
+            "resource_selection": null,
+            "tool_configuration": null,
+            "user_navigation": null,
+            "wiki_page_menu": null,
+            "icon_url": "",
+            "not_selectable": false
+          },
+          {
+            "id": 27,
+            "domain": null,
+            "url": "https://signon.smarterservices.com/v1/auth/lti",
+            "consumer_key": "d",
+            "name": "Proctoring Course only",
+            "description": "",
+            "created_at": "2018-02-19T16:55:00Z",
+            "updated_at": "2018-02-19T16:55:00Z",
+            "privacy_level": "public",
+            "custom_fields": {},
+            "workflow_state": "public",
+            "vendor_help_link": null,
+            "account_navigation": null,
+            "similarity_detection": null,
+            "assignment_menu": null,
+            "assignment_selection": null,
+            "collaboration": null,
+            "course_assignments_menu": null,
+            "course_home_sub_navigation": null,
+            "course_navigation": null,
+            "course_settings_sub_navigation": null,
+            "discussion_topic_menu": null,
+            "editor_button": null,
+            "file_menu": null,
+            "global_navigation": null,
+            "homework_submission": null,
+            "link_selection": null,
+            "migration_selection": null,
+            "module_menu": null,
+            "post_grades": null,
+            "quiz_menu": null,
+            "resource_selection": null,
+            "tool_configuration": null,
+            "user_navigation": null,
+            "wiki_page_menu": null,
+            "icon_url": "",
+            "not_selectable": false
+          }
+        ]
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  }
+}
