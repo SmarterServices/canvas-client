@@ -8,9 +8,12 @@ const {buildUrl} = require('./../../lib/utils');
 module.exports = {
   /**
    * Mock a canvas endpoint
-   * @param {string} host
-   * @param {integer} perPage
-   * @param {Object} request
+   * @param {string} host - Host address of canvas
+   * @param {integer} perPage - Amount of items per page
+   * @param {Object} request - The request details
+   * @param {integer} request.statusCode - The status code of response of the request
+   * @param {Object} request.params - Request path parameters
+   * @param {Object} request.response - The request response payload
    * @return {Object}
    */
   mockCanvasEndpoint(host, request, endpoint, perPage) {
@@ -60,7 +63,12 @@ module.exports = {
 
   /**
    * Mock refreshToken function
-   * @param {Object} options
+   * @param {Object} options - Refresh token endpoint options
+   * @param {string} options.host - Host address of canvas
+   * @param {string} options.clientId - Client id
+   * @param {string} options.clientSecret - Client secret
+   * @param {string} options.accessToken - Access token for canvas
+   * @param {string} options.refreshToken - Refresh token for canvas
    * @return {Object}
    */
   mockRefreshToken(options) {
