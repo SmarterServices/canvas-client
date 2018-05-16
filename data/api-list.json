@@ -14,5 +14,9 @@
   "courseExternalTools": {
     "endpoint": "/api/v1/courses/{courseId}/external_tools",
     "method": "GET"
+  },
+  "courseUsers": {
+    "endpoint": "/api/v1/courses/{courseId}/users",
+    "method": "GET"
   }
 }
