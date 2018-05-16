@@ -3,7 +3,7 @@
 const joi = require('joi');
 
 const schema = {
-  credentials : joi
+  credentials: joi
     .object({
       host: joi
         .string()
@@ -51,10 +51,21 @@ const schema = {
         .integer()
         .positive()
         .required()
-        .description('Canvas client ID')
+        .description('Canvas course ID')
     })
     .required()
     .description('Course enrollment list schema'),
+  courseUsers: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas course ID')
+    })
+    .required()
+    .description('Course user list schema'),
   courseExams: joi
     .object({
       courseId: joi
