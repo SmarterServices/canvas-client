@@ -13,7 +13,7 @@ const dataMap = {
   },
   userId: 'user_id',
   courseId: 'course_id',
-  emailAddress: 'user.primary_email',
+  emailAddress: 'user.email',
   enrollmentState: 'enrollment_state',
   role: 'role',
   rootAccountId: 'root_account_id'
