@@ -39,10 +39,20 @@ describe('Client', function testCanvasClient() {
       options.courseId = request.params.courseId;
 
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseEnrollments.endpoint, options.perPage);
+      const scope = canvasMock.mockCourseUsers(
+        canvasConfig.host,
+        mockData.courseUsers.requests.valid,
+        mockData.courseUsers.endpoint,
+        options.perPage
+      );
 
       return client
         .courseEnrollments(options, updateAccessTokenSpy)
         .then(response => {
+          request.response.forEach(enrollment => {
+            const user = mockData.courseUsers.requests.valid.response.find(user => user.id === enrollment.user.id);
+            Object.assign(enrollment.user, user);
+          });
           const expectedResponse = utils.formatResponse(request.response, enrollmentMap);
           expect(response).to.eql(expectedResponse);
           expect(updateAccessTokenSpy.called).to.equal(false);
