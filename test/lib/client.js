@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const client = require('./../../index');
 const mockData = require('./../data/mock.json');
+const sinon = require('sinon');
 
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -27,6 +28,8 @@ describe('Client', function testCanvasClient() {
     canvasMock.restore();
   });
 
+  const updateAccessTokenSpy = sinon.spy();
+
   describe('Course Enrollments', function testCourseEnrollments() {
     it('Should list course enrollments', () => {
       const request = mockData.courseEnrollments.requests.valid;
@@ -38,10 +41,12 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseEnrollments.endpoint, options.perPage);
 
       return client
-        .courseEnrollments(options)
+        .courseEnrollments(options, updateAccessTokenSpy)
         .then(response => {
           const expectedResponse = utils.formatResponse(request.response, enrollmentMap);
           expect(response).to.eql(expectedResponse);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -54,13 +59,15 @@ describe('Client', function testCanvasClient() {
 
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseEnrollments.endpoint, options.perPage);
 
-      const courseEnrollmentsPromise = client.courseEnrollments(options);
+      const courseEnrollmentsPromise = client.courseEnrollments(options, updateAccessTokenSpy);
 
       yield expect(courseEnrollmentsPromise).to.be.rejected;
 
       return courseEnrollmentsPromise
         .catch(error => {
           expect(error.statusCode).to.equal(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -74,13 +81,15 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseEnrollments.endpoint, options.perPage);
       canvasMock.mockRefreshToken(canvasConfig);
 
-      const courseEnrollmentsPromise = client.courseEnrollments(options);
+      const courseEnrollmentsPromise = client.courseEnrollments(options, updateAccessTokenSpy);
 
       yield expect(courseEnrollmentsPromise).to.be.rejected;
 
       return courseEnrollmentsPromise
         .catch(error => {
           expect(error.statusCode).to.equal(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -88,7 +97,7 @@ describe('Client', function testCanvasClient() {
       const options = _.cloneDeep(canvasConfig);
       options.perPage = 2;
 
-      return expect(client.courseEnrollments(options)).to.be.rejected;
+      return expect(client.courseEnrollments(options, updateAccessTokenSpy)).to.be.rejected;
     });
   });
 
@@ -103,9 +112,11 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseExams.endpoint, options.perPage);
 
       return client
-        .courseExams(options)
+        .courseExams(options, updateAccessTokenSpy)
         .then(response => {
           expect(response).to.eql(request.response);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -118,13 +129,15 @@ describe('Client', function testCanvasClient() {
 
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseExams.endpoint, options.perPage);
 
-      const courseExamsPromise = client.courseExams(options);
+      const courseExamsPromise = client.courseExams(options, updateAccessTokenSpy);
 
       yield expect(courseExamsPromise).to.be.rejected;
 
       return courseExamsPromise
         .catch(error => {
           expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -138,13 +151,15 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseExams.endpoint, options.perPage);
       canvasMock.mockRefreshToken(canvasConfig);
 
-      const courseExamsPromise = client.courseExams(options);
+      const courseExamsPromise = client.courseExams(options, updateAccessTokenSpy);
 
       yield expect(courseExamsPromise).to.be.rejected;
 
       return courseExamsPromise
         .catch(error => {
           expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -152,7 +167,7 @@ describe('Client', function testCanvasClient() {
       const options = _.cloneDeep(canvasConfig);
       options.perPage = 2;
 
-      return expect(client.courseExams(options)).to.be.rejected;
+      return expect(client.courseExams(options, updateAccessTokenSpy)).to.be.rejected;
     });
   });
 
@@ -166,9 +181,11 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseExternalTools.endpoint);
 
       return client
-        .listCourseExternalTools(options)
+        .listCourseExternalTools(options, updateAccessTokenSpy)
         .then(response => {
           expect(response).to.eql(request.response);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -180,17 +197,19 @@ describe('Client', function testCanvasClient() {
 
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseExternalTools.endpoint);
 
-      const courseExternalToolsPromise = client.listCourseExternalTools(options);
+      const courseExternalToolsPromise = client.listCourseExternalTools(options, updateAccessTokenSpy);
 
       yield expect(courseExternalToolsPromise).to.be.rejected;
 
       return courseExternalToolsPromise
         .catch(error => {
           expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
-    it('Should list course external tools', function* () {
+    it('Should fail to list course external tools for unquthorized request', function* () {
       const request = mockData.courseExternalTools.requests.unauthorized;
 
       const options = _.cloneDeep(canvasConfig);
@@ -199,13 +218,15 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseExternalTools.endpoint);
       canvasMock.mockRefreshToken(canvasConfig);
 
-      const courseExternalToolsPromise = client.listCourseExternalTools(options);
+      const courseExternalToolsPromise = client.listCourseExternalTools(options, updateAccessTokenSpy);
 
       yield expect(courseExternalToolsPromise).to.be.rejected;
 
       return courseExternalToolsPromise
         .catch(error => {
           expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
         });
     });
 
@@ -213,7 +234,7 @@ describe('Client', function testCanvasClient() {
       const options = _.cloneDeep(canvasConfig);
       options.perPage = 2;
 
-      return expect(client.listCourseExternalTools(options)).to.be.rejected;
+      return expect(client.listCourseExternalTools(options, updateAccessTokenSpy)).to.be.rejected;
     });
   });
 });
