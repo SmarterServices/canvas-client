@@ -85,7 +85,24 @@ const schema = {
         .description('Canvas client Course ID')
     })
     .required()
-    .description('Course exam list schema')
+    .description('Course exam list schema'),
+  getExam: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client Course ID'),
+      quizId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client quiz ID')
+    })
+    .required()
+    .description('Course exam get schema')
 };
 
 module.exports = schema;
