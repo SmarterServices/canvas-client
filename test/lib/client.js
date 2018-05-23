@@ -29,11 +29,10 @@ describe('Client', function testCanvasClient() {
     canvasMock.restore();
   });
 
-  const updateAccessTokenSpy = sinon.spy();
+  const updateAccessTokenSpy = sinon.stub().resolves();
 
   describe('Course Enrollments', function testCourseEnrollments() {
-    //fixme following test will be fixed under #157630346
-    /*it('Should list course enrollments', () => {
+    it('Should list course enrollments', () => {
       const request = mockData.courseEnrollments.requests.valid;
 
       const options = _.cloneDeep(canvasConfig);
@@ -50,7 +49,7 @@ describe('Client', function testCanvasClient() {
           expect(updateAccessTokenSpy.called).to.equal(false);
           updateAccessTokenSpy.resetHistory();
         });
-    });*/
+    });
 
     it('Should fail to list course enrollments for bad request', function* () {
       const request = mockData.courseEnrollments.requests.invalid;
@@ -251,7 +250,7 @@ describe('Client', function testCanvasClient() {
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.getExam.endpoint, 0, false);
 
       return client
-        .getExam(options)
+        .getExam(options, updateAccessTokenSpy)
         .then(response => {
           const expectedResponse = utils.formatResponse(request.response, examMap);
           expect(response).to.eql(expectedResponse);
@@ -267,7 +266,7 @@ describe('Client', function testCanvasClient() {
 
       canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.getExam.endpoint, 0, false);
 
-      const getExamPromise = client.getExam(options);
+      const getExamPromise = client.getExam(options, updateAccessTokenSpy);
 
       yield expect(getExamPromise).to.be.rejected;
 
