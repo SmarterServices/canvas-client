@@ -18,5 +18,9 @@
   "courseUsers": {
     "endpoint": "/api/v1/courses/{courseId}/users",
     "method": "GET"
+  },
+  "getExam": {
+    "endpoint": "/api/v1/courses/{courseId}/quizzes/{quizId}",
+    "method": "GET"
   }
 }

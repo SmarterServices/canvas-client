@@ -16,7 +16,7 @@ module.exports = {
    * @param {Object} request.response - The request response payload
    * @return {Object}
    */
-  mockCanvasEndpoint(host, request, endpoint, perPage) {
+  mockCanvasEndpoint(host, request, endpoint, perPage, shouldPaginate = true) {
     const path = buildUrl(endpoint, request.params);
 
     // There must be at least one page
@@ -48,7 +48,12 @@ module.exports = {
         ? request.response.slice(i * internalPerPage, (i + 1) * internalPerPage)
         : request.response;
 
-      const headers = Object.assign({}, request.headers, {link: headerLink});
+
+      const headers = Object.assign({}, request.headers);
+
+      if (shouldPaginate) {
+        headers.link = headerLink;
+      }
       const interceptor = nock(host)
         .persist()
         .get(path)

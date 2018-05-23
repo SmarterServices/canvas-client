@@ -532,5 +532,139 @@
         }
       }
     }
+  },
+  "getExam": {
+    "endpoint": "/api/v1/courses/{courseId}/quizzes/{quizId}",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123",
+          "quizId": "321"
+        },
+        "response": {
+          "id": 2,
+          "title": "Final Exam",
+          "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/2",
+          "mobile_url": "https://smarterservices.instructure.com/courses/1/quizzes/2?force_user=1&persist_headless=1",
+          "description": "<p>This is your final exam, ensure you do well!</p>",
+          "quiz_type": "assignment",
+          "time_limit": 90,
+          "shuffle_answers": false,
+          "show_correct_answers": true,
+          "scoring_policy": "keep_highest",
+          "allowed_attempts": 1,
+          "one_question_at_a_time": false,
+          "question_count": 0,
+          "points_possible": 0,
+          "cant_go_back": false,
+          "access_code": "final-time",
+          "ip_filter": null,
+          "due_at": "2017-12-01T04:59:59Z",
+          "lock_at": "2017-12-01T04:59:59Z",
+          "unlock_at": "2017-11-21T05:00:00Z",
+          "published": true,
+          "unpublishable": true,
+          "locked_for_user": true,
+          "lock_info": {
+            "asset_string": "quizzes:quiz_2",
+            "lock_at": "2017-12-01T04:59:59Z",
+            "can_view": true
+          },
+          "lock_explanation": "This quiz was locked Nov 30, 2017 at 11:59pm.",
+          "hide_results": null,
+          "show_correct_answers_at": null,
+          "hide_correct_answers_at": null,
+          "all_dates": [
+            {
+              "due_at": "2017-12-01T04:59:59Z",
+              "unlock_at": "2017-11-21T05:00:00Z",
+              "lock_at": "2017-12-01T04:59:59Z",
+              "base": true
+            }
+          ],
+          "can_unpublish": true,
+          "can_update": true,
+          "require_lockdown_browser": false,
+          "require_lockdown_browser_for_results": false,
+          "require_lockdown_browser_monitor": false,
+          "lockdown_browser_monitor_data": null,
+          "speed_grader_url": "https://smarterservices.instructure.com/courses/1/gradebook/speed_grader?assignment_id=2",
+          "permissions": {
+            "read_statistics": true,
+            "manage": true,
+            "read": true,
+            "update": true,
+            "create": true,
+            "submit": true,
+            "preview": true,
+            "delete": true,
+            "grade": true,
+            "review_grades": true,
+            "view_answer_audits": false
+          },
+          "quiz_reports_url": "https://smarterservices.instructure.com/api/v1/courses/1/quizzes/2/reports",
+          "quiz_statistics_url": "https://smarterservices.instructure.com/api/v1/courses/1/quizzes/2/statistics",
+          "message_students_url": "https://smarterservices.instructure.com/api/v1/courses/1/quizzes/2/submission_users/message",
+          "section_count": 1,
+          "quiz_submission_versions_html_url": "https://smarterservices.instructure.com/courses/1/quizzes/2/submission_versions",
+          "assignment_id": 2,
+          "one_time_results": false,
+          "only_visible_to_overrides": false,
+          "assignment_group_id": 1,
+          "show_correct_answers_last_attempt": false,
+          "version_number": 3,
+          "question_types": [],
+          "has_access_code": true,
+          "post_to_sis": false
+        }
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456",
+          "quizId": "123"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789",
+          "quizId": "123"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      },
+      "notFound": {
+        "statusCode": 404,
+        "params": {
+          "courseId": "456",
+          "quizId": "123"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "The specified resource does not exist."
+            }
+          ]
+        }
+      }
+    }
   }
 }
