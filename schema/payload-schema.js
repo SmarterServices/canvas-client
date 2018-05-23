@@ -102,7 +102,19 @@ const schema = {
         .description('Canvas client quiz ID')
     })
     .required()
-    .description('Course exam get schema')
+    .description('Course exam get schema'),
+
+  getCourseDetails: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client Course ID')
+    })
+    .required()
+    .description('Course course details from canvas')
 };
 
 module.exports = schema;

@@ -13,10 +13,11 @@ const config = {
 };
 
 const examConfig = Object.assign({}, config, {quizId: 2});
-client.getExam(examConfig)
+// client.getExam(examConfig)
 // client.courseExams(config)
 // client.courseEnrollments(config)
 // client.listCourseExternalTools(config)
+client.getCourseDetails(config)
   .then(results => {
     console.log(results);
   })

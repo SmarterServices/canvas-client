@@ -22,5 +22,9 @@
   "getExam": {
     "endpoint": "/api/v1/courses/{courseId}/quizzes/{quizId}",
     "method": "GET"
+  },
+  "getCourseDetails": {
+    "endpoint": "/api/v1/courses/{courseId}",
+    "method": "GET"
   }
 }
