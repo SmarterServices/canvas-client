@@ -86,6 +86,17 @@ const schema = {
     })
     .required()
     .description('Course exam list schema'),
+  accountExternalTools: joi
+    .object({
+      accountId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client account ID')
+    })
+    .required()
+    .description('Get external tool by account'),
   getExam: joi
     .object({
       courseId: joi

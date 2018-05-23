@@ -10,6 +10,7 @@ const config = {
   refreshToken: '',
   courseId: 4,
   perPage: 2,
+  accountId: 1
 };
 
 const examConfig = Object.assign({}, config, {quizId: 2});
@@ -17,7 +18,8 @@ const examConfig = Object.assign({}, config, {quizId: 2});
 // client.courseExams(config)
 // client.courseEnrollments(config)
 // client.listCourseExternalTools(config)
-client.getCourseDetails(config)
+client
+  .listAccountExternalTools(config)
   .then(results => {
     console.log(results);
   })
