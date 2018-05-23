@@ -324,6 +324,86 @@
       }
     }
   },
+  "courseUsers": {
+    "endpoint": "/api/v1/courses/{courseId}/users",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": [
+          {
+            "id": 2,
+            "name": "Jason Fill Admin",
+            "sortable_name": "Admin, Jason Fill",
+            "short_name": "Jason Fill Admin",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jason@smarterservices.com",
+            "email": "jason@smarterservices.com"
+          },
+          {
+            "id": 14,
+            "name": "Jason Demo",
+            "sortable_name": "Demo, Jason",
+            "short_name": "Jason Demo",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "ja.sonfill@gmail.com",
+            "email": "ja.sonfill@gmail.com"
+          },
+          {
+            "id": 6,
+            "name": "Fred Flinstone",
+            "sortable_name": "Flinstone, Fred",
+            "short_name": "Fred Flinstone",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+fred@gmail.com",
+            "email": "jasonfill+fred@gmail.com"
+          },
+          {
+            "id": 7,
+            "name": "Wilma Flinstone",
+            "sortable_name": "Flinstone, Wilma",
+            "short_name": "Wilma Flinstone",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+wilma@gmail.com",
+            "email": "jasonfill+wilma@gmail.com"
+          },
+          {
+            "id": 10,
+            "name": "Bamm-Bamm Rubble",
+            "sortable_name": "Rubble, Bamm-Bamm",
+            "short_name": "Bamm-Bamm Rubble",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+bamm@gmail.com",
+            "email": "jasonfill+bamm@gmail.com"
+          },
+          {
+            "id": 8,
+            "name": "Barney Rubble",
+            "sortable_name": "Rubble, Barney",
+            "short_name": "Barney Rubble",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+barney@gmail.com",
+            "email": "jasonfill+barney@gmail.com"
+          }
+        ]
+      }
+    }
+  },
   "courseExams": {
     "endpoint": "/api/v1/courses/{courseId}/quizzes",
     "method": "GET",
