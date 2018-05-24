@@ -13,6 +13,7 @@ const expect = chai.expect;
 const utils = require('./../../lib/utils');
 const enrollmentMap = require('./../../data/enrollment-data-map');
 const examMap = require('./../../data/exam-data-map');
+const courseMap = require('./../../data/course-data-map');
 const canvasMock = require('./mock');
 require('mocha-generators').install();
 
@@ -167,6 +168,78 @@ describe('Client', function testCanvasClient() {
       yield expect(courseExamsPromise).to.be.rejected;
 
       return courseExamsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list course enrollment for no courseId in params', () => {
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+
+      return expect(client.courseExams(options, updateAccessTokenSpy)).to.be.rejected;
+    });
+  });
+
+
+  describe('Course details', function testCourseExams() {
+    it('Should get course details', () => {
+      const request = mockData.courseDetails.requests.valid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+      options.courseId = request.params.courseId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseDetails.endpoint, options.perPage);
+
+      return client
+        .getCourseDetails(options, updateAccessTokenSpy)
+        .then(response => {
+          const expectedResponse = utils.formatResponse(request.response, courseMap);
+          expect(response).to.eql(expectedResponse);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list course details for bad request', function* () {
+      const request = mockData.courseDetails.requests.invalid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+      options.courseId = request.params.courseId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseDetails.endpoint, options.perPage);
+
+      const courseDetailsPromise = client.getCourseDetails(options, updateAccessTokenSpy);
+
+      yield expect(courseDetailsPromise).to.be.rejected;
+
+      return courseDetailsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list course details for unauthorized request', function* () {
+      const request = mockData.courseDetails.requests.unauthorized;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+      options.courseId = request.params.courseId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseDetails.endpoint, options.perPage);
+      canvasMock.mockRefreshToken(canvasConfig);
+
+      const courseDetailsPromise = client.getCourseDetails(options, updateAccessTokenSpy);
+
+      yield expect(courseDetailsPromise).to.be.rejected;
+
+      return courseDetailsPromise
         .catch(error => {
           expect(error.statusCode).to.eql(request.statusCode);
           expect(updateAccessTokenSpy.called).to.equal(true);

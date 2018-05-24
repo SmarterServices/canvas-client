@@ -482,6 +482,85 @@
       }
     }
   },
+  "courseDetails": {
+    "endpoint": "/api/v1/courses/{courseId}",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": {
+          "id": 7,
+          "name": "Demo - Jason",
+          "account_id": 2,
+          "uuid": "XOW7WUX2p00rc7wTwV67X0jctW3KrRkHtRCML99w",
+          "start_at": "2017-11-13T20:24:00Z",
+          "grading_standard_id": null,
+          "is_public": false,
+          "course_code": "Demo",
+          "default_view": "assignments",
+          "root_account_id": 1,
+          "enrollment_term_id": 1,
+          "end_at": null,
+          "public_syllabus": false,
+          "public_syllabus_to_auth": false,
+          "storage_quota_mb": 500,
+          "is_public_to_auth_users": false,
+          "hide_final_grades": false,
+          "apply_assignment_group_weights": false,
+          "calendar": {
+            "ics": "https://smarterservices.instructure.com/feeds/calendars/course_XOW7WUX2p00rc7wTwV67X0jctW3KrRkHtRCML99w.ics"
+          },
+          "time_zone": "America/New_York",
+          "sis_course_id": null,
+          "sis_import_id": null,
+          "integration_id": null,
+          "enrollments": [
+            {
+              "type": "teacher",
+              "role": "TeacherEnrollment",
+              "role_id": 4,
+              "user_id": 2,
+              "enrollment_state": "active"
+            }
+          ],
+          "workflow_state": "available",
+          "restrict_enrollments_to_course_dates": false
+        }
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
   "courseExternalTools": {
     "endpoint": "/api/v1/courses/{courseId}/external_tools",
     "method": "GET",
