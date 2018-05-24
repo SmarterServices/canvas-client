@@ -15,12 +15,20 @@
     "endpoint": "/api/v1/courses/{courseId}/external_tools",
     "method": "GET"
   },
+  "accountExternalTools": {
+    "endpoint": "/api/v1/accounts/{accountId}/external_tools",
+    "method": "GET"
+  },
   "courseUsers": {
     "endpoint": "/api/v1/courses/{courseId}/users",
     "method": "GET"
   },
   "getExam": {
     "endpoint": "/api/v1/courses/{courseId}/quizzes/{quizId}",
+    "method": "GET"
+  },
+  "getCourseDetails": {
+    "endpoint": "/api/v1/courses/{courseId}",
     "method": "GET"
   }
 }

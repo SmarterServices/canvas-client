@@ -482,6 +482,85 @@
       }
     }
   },
+  "courseDetails": {
+    "endpoint": "/api/v1/courses/{courseId}",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": {
+          "id": 7,
+          "name": "Demo - Jason",
+          "account_id": 2,
+          "uuid": "XOW7WUX2p00rc7wTwV67X0jctW3KrRkHtRCML99w",
+          "start_at": "2017-11-13T20:24:00Z",
+          "grading_standard_id": null,
+          "is_public": false,
+          "course_code": "Demo",
+          "default_view": "assignments",
+          "root_account_id": 1,
+          "enrollment_term_id": 1,
+          "end_at": null,
+          "public_syllabus": false,
+          "public_syllabus_to_auth": false,
+          "storage_quota_mb": 500,
+          "is_public_to_auth_users": false,
+          "hide_final_grades": false,
+          "apply_assignment_group_weights": false,
+          "calendar": {
+            "ics": "https://smarterservices.instructure.com/feeds/calendars/course_XOW7WUX2p00rc7wTwV67X0jctW3KrRkHtRCML99w.ics"
+          },
+          "time_zone": "America/New_York",
+          "sis_course_id": null,
+          "sis_import_id": null,
+          "integration_id": null,
+          "enrollments": [
+            {
+              "type": "teacher",
+              "role": "TeacherEnrollment",
+              "role_id": 4,
+              "user_id": 2,
+              "enrollment_state": "active"
+            }
+          ],
+          "workflow_state": "available",
+          "restrict_enrollments_to_course_dates": false
+        }
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
   "courseExternalTools": {
     "endpoint": "/api/v1/courses/{courseId}/external_tools",
     "method": "GET",
@@ -599,6 +678,137 @@
         "statusCode": 401,
         "params": {
           "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
+  "accountExternalTools": {
+    "endpoint": "/api/v1/accounts/{accountId}/external_tools",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "accountId": "123"
+        },
+        "response": [
+          {
+            "id": 3,
+            "domain": "signon-stage.smarterservices.com",
+            "url": "https://signon-stage.smarterservices.com/v1/auth/lti?account=canvas",
+            "consumer_key": "jason-sandbox",
+            "name": "Proctoring",
+            "description": "",
+            "created_at": "2017-07-26T12:56:30Z",
+            "updated_at": "2017-07-26T12:56:30Z",
+            "privacy_level": "public",
+            "custom_fields": {},
+            "workflow_state": "public",
+            "vendor_help_link": null,
+            "account_navigation": null,
+            "similarity_detection": null,
+            "assignment_menu": null,
+            "assignment_selection": null,
+            "collaboration": null,
+            "course_assignments_menu": null,
+            "course_home_sub_navigation": null,
+            "course_navigation": {
+              "url": "https://signon-stage.smarterservices.com/v1/auth/lti?account=canvas",
+              "text": "Proctoring",
+              "visibility": "public",
+              "default": "enabled",
+              "enabled": "true",
+              "label": "Proctoring",
+              "selection_width": 800,
+              "selection_height": 400,
+              "icon_url": ""
+            },
+            "course_settings_sub_navigation": null,
+            "discussion_topic_menu": null,
+            "editor_button": null,
+            "file_menu": null,
+            "global_navigation": null,
+            "homework_submission": null,
+            "link_selection": null,
+            "migration_selection": null,
+            "module_menu": null,
+            "post_grades": null,
+            "quiz_menu": null,
+            "resource_selection": null,
+            "tool_configuration": null,
+            "user_navigation": null,
+            "wiki_page_menu": null,
+            "icon_url": "",
+            "not_selectable": false
+          },
+          {
+            "id": 27,
+            "domain": null,
+            "url": "https://signon.smarterservices.com/v1/auth/lti",
+            "consumer_key": "d",
+            "name": "Proctoring Course only",
+            "description": "",
+            "created_at": "2018-02-19T16:55:00Z",
+            "updated_at": "2018-02-19T16:55:00Z",
+            "privacy_level": "public",
+            "custom_fields": {},
+            "workflow_state": "public",
+            "vendor_help_link": null,
+            "account_navigation": null,
+            "similarity_detection": null,
+            "assignment_menu": null,
+            "assignment_selection": null,
+            "collaboration": null,
+            "course_assignments_menu": null,
+            "course_home_sub_navigation": null,
+            "course_navigation": null,
+            "course_settings_sub_navigation": null,
+            "discussion_topic_menu": null,
+            "editor_button": null,
+            "file_menu": null,
+            "global_navigation": null,
+            "homework_submission": null,
+            "link_selection": null,
+            "migration_selection": null,
+            "module_menu": null,
+            "post_grades": null,
+            "quiz_menu": null,
+            "resource_selection": null,
+            "tool_configuration": null,
+            "user_navigation": null,
+            "wiki_page_menu": null,
+            "icon_url": "",
+            "not_selectable": false
+          }
+        ]
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "accountId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "accountId": "789"
         },
         "response": {
           "errors": [

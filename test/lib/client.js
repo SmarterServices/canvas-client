@@ -13,6 +13,7 @@ const expect = chai.expect;
 const utils = require('./../../lib/utils');
 const enrollmentMap = require('./../../data/enrollment-data-map');
 const examMap = require('./../../data/exam-data-map');
+const courseMap = require('./../../data/course-data-map');
 const canvasMock = require('./mock');
 require('mocha-generators').install();
 
@@ -182,6 +183,78 @@ describe('Client', function testCanvasClient() {
     });
   });
 
+
+  describe('Course details', function testCourseExams() {
+    it('Should get course details', () => {
+      const request = mockData.courseDetails.requests.valid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+      options.courseId = request.params.courseId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseDetails.endpoint, options.perPage);
+
+      return client
+        .getCourseDetails(options, updateAccessTokenSpy)
+        .then(response => {
+          const expectedResponse = utils.formatResponse(request.response, courseMap);
+          expect(response).to.eql(expectedResponse);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list course details for bad request', function* () {
+      const request = mockData.courseDetails.requests.invalid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+      options.courseId = request.params.courseId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseDetails.endpoint, options.perPage);
+
+      const courseDetailsPromise = client.getCourseDetails(options, updateAccessTokenSpy);
+
+      yield expect(courseDetailsPromise).to.be.rejected;
+
+      return courseDetailsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list course details for unauthorized request', function* () {
+      const request = mockData.courseDetails.requests.unauthorized;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+      options.courseId = request.params.courseId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.courseDetails.endpoint, options.perPage);
+      canvasMock.mockRefreshToken(canvasConfig);
+
+      const courseDetailsPromise = client.getCourseDetails(options, updateAccessTokenSpy);
+
+      yield expect(courseDetailsPromise).to.be.rejected;
+
+      return courseDetailsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list course enrollment for no courseId in params', () => {
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+
+      return expect(client.courseExams(options, updateAccessTokenSpy)).to.be.rejected;
+    });
+  });
+
   describe('Course external tools', function testCourseExternalTools() {
     it('Should list course external tools', () => {
       const request = mockData.courseExternalTools.requests.valid;
@@ -246,6 +319,73 @@ describe('Client', function testCanvasClient() {
       options.perPage = 2;
 
       return expect(client.listCourseExternalTools(options, updateAccessTokenSpy)).to.be.rejected;
+    });
+  });
+
+  describe('Account external tools', function testAccountExternalTools() {
+    it('Should list account external tools', () => {
+      const request = mockData.accountExternalTools.requests.valid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.accountId = request.params.accountId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.accountExternalTools.endpoint);
+
+      return client
+        .listAccountExternalTools(options, updateAccessTokenSpy)
+        .then(response => {
+          expect(response).to.eql(request.response);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list account external tools for bad request', function* () {
+      const request = mockData.accountExternalTools.requests.invalid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.accountId = request.params.accountId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.accountExternalTools.endpoint);
+
+      const accountExternalToolsPromise = client.listAccountExternalTools(options, updateAccessTokenSpy);
+
+      yield expect(accountExternalToolsPromise).to.be.rejected;
+
+      return accountExternalToolsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list account external tools for unquthorized request', function* () {
+      const request = mockData.accountExternalTools.requests.unauthorized;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.accountId = request.params.accountId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.accountExternalTools.endpoint);
+      canvasMock.mockRefreshToken(canvasConfig);
+
+      const accountExternalToolsPromise = client.listAccountExternalTools(options, updateAccessTokenSpy);
+
+      yield expect(accountExternalToolsPromise).to.be.rejected;
+
+      return accountExternalToolsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list account enrollment for no accountId in params', () => {
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+
+      return expect(client.listAccountExternalTools(options, updateAccessTokenSpy)).to.be.rejected;
     });
   });
 
