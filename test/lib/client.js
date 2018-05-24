@@ -249,6 +249,73 @@ describe('Client', function testCanvasClient() {
     });
   });
 
+  describe('Account external tools', function testAccountExternalTools() {
+    it('Should list account external tools', () => {
+      const request = mockData.accountExternalTools.requests.valid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.accountId = request.params.accountId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.accountExternalTools.endpoint);
+
+      return client
+        .listAccountExternalTools(options, updateAccessTokenSpy)
+        .then(response => {
+          expect(response).to.eql(request.response);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list account external tools for bad request', function* () {
+      const request = mockData.accountExternalTools.requests.invalid;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.accountId = request.params.accountId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.accountExternalTools.endpoint);
+
+      const accountExternalToolsPromise = client.listAccountExternalTools(options, updateAccessTokenSpy);
+
+      yield expect(accountExternalToolsPromise).to.be.rejected;
+
+      return accountExternalToolsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(false);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list account external tools for unquthorized request', function* () {
+      const request = mockData.accountExternalTools.requests.unauthorized;
+
+      const options = _.cloneDeep(canvasConfig);
+      options.accountId = request.params.accountId;
+
+      canvasMock.mockCanvasEndpoint(canvasConfig.host, request, mockData.accountExternalTools.endpoint);
+      canvasMock.mockRefreshToken(canvasConfig);
+
+      const accountExternalToolsPromise = client.listAccountExternalTools(options, updateAccessTokenSpy);
+
+      yield expect(accountExternalToolsPromise).to.be.rejected;
+
+      return accountExternalToolsPromise
+        .catch(error => {
+          expect(error.statusCode).to.eql(request.statusCode);
+          expect(updateAccessTokenSpy.called).to.equal(true);
+          updateAccessTokenSpy.resetHistory();
+        });
+    });
+
+    it('Should fail to list account enrollment for no accountId in params', () => {
+      const options = _.cloneDeep(canvasConfig);
+      options.perPage = 2;
+
+      return expect(client.listAccountExternalTools(options, updateAccessTokenSpy)).to.be.rejected;
+    });
+  });
+
   describe('Get Exam', function testExam() {
     it('Should get exam', () => {
       const request = mockData.getExam.requests.valid;
