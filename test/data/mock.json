@@ -324,6 +324,86 @@
       }
     }
   },
+  "courseUsers": {
+    "endpoint": "/api/v1/courses/{courseId}/users",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": [
+          {
+            "id": 2,
+            "name": "Jason Fill Admin",
+            "sortable_name": "Admin, Jason Fill",
+            "short_name": "Jason Fill Admin",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jason@smarterservices.com",
+            "email": "jason@smarterservices.com"
+          },
+          {
+            "id": 14,
+            "name": "Jason Demo",
+            "sortable_name": "Demo, Jason",
+            "short_name": "Jason Demo",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "ja.sonfill@gmail.com",
+            "email": "ja.sonfill@gmail.com"
+          },
+          {
+            "id": 6,
+            "name": "Fred Flinstone",
+            "sortable_name": "Flinstone, Fred",
+            "short_name": "Fred Flinstone",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+fred@gmail.com",
+            "email": "jasonfill+fred@gmail.com"
+          },
+          {
+            "id": 7,
+            "name": "Wilma Flinstone",
+            "sortable_name": "Flinstone, Wilma",
+            "short_name": "Wilma Flinstone",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+wilma@gmail.com",
+            "email": "jasonfill+wilma@gmail.com"
+          },
+          {
+            "id": 10,
+            "name": "Bamm-Bamm Rubble",
+            "sortable_name": "Rubble, Bamm-Bamm",
+            "short_name": "Bamm-Bamm Rubble",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+bamm@gmail.com",
+            "email": "jasonfill+bamm@gmail.com"
+          },
+          {
+            "id": 8,
+            "name": "Barney Rubble",
+            "sortable_name": "Rubble, Barney",
+            "short_name": "Barney Rubble",
+            "sis_user_id": null,
+            "integration_id": null,
+            "sis_import_id": null,
+            "login_id": "jasonfill+barney@gmail.com",
+            "email": "jasonfill+barney@gmail.com"
+          }
+        ]
+      }
+    }
+  },
   "courseExams": {
     "endpoint": "/api/v1/courses/{courseId}/quizzes",
     "method": "GET",
@@ -370,6 +450,85 @@
             "quiz_type": "assignment"
           }
         ]
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
+  "courseDetails": {
+    "endpoint": "/api/v1/courses/{courseId}",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123"
+        },
+        "response": {
+          "id": 7,
+          "name": "Demo - Jason",
+          "account_id": 2,
+          "uuid": "XOW7WUX2p00rc7wTwV67X0jctW3KrRkHtRCML99w",
+          "start_at": "2017-11-13T20:24:00Z",
+          "grading_standard_id": null,
+          "is_public": false,
+          "course_code": "Demo",
+          "default_view": "assignments",
+          "root_account_id": 1,
+          "enrollment_term_id": 1,
+          "end_at": null,
+          "public_syllabus": false,
+          "public_syllabus_to_auth": false,
+          "storage_quota_mb": 500,
+          "is_public_to_auth_users": false,
+          "hide_final_grades": false,
+          "apply_assignment_group_weights": false,
+          "calendar": {
+            "ics": "https://smarterservices.instructure.com/feeds/calendars/course_XOW7WUX2p00rc7wTwV67X0jctW3KrRkHtRCML99w.ics"
+          },
+          "time_zone": "America/New_York",
+          "sis_course_id": null,
+          "sis_import_id": null,
+          "integration_id": null,
+          "enrollments": [
+            {
+              "type": "teacher",
+              "role": "TeacherEnrollment",
+              "role_id": 4,
+              "user_id": 2,
+              "enrollment_state": "active"
+            }
+          ],
+          "workflow_state": "available",
+          "restrict_enrollments_to_course_dates": false
+        }
       },
       "invalid": {
         "statusCode": 400,
@@ -529,6 +688,271 @@
         },
         "headers": {
           "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
+  "accountExternalTools": {
+    "endpoint": "/api/v1/accounts/{accountId}/external_tools",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "accountId": "123"
+        },
+        "response": [
+          {
+            "id": 3,
+            "domain": "signon-stage.smarterservices.com",
+            "url": "https://signon-stage.smarterservices.com/v1/auth/lti?account=canvas",
+            "consumer_key": "jason-sandbox",
+            "name": "Proctoring",
+            "description": "",
+            "created_at": "2017-07-26T12:56:30Z",
+            "updated_at": "2017-07-26T12:56:30Z",
+            "privacy_level": "public",
+            "custom_fields": {},
+            "workflow_state": "public",
+            "vendor_help_link": null,
+            "account_navigation": null,
+            "similarity_detection": null,
+            "assignment_menu": null,
+            "assignment_selection": null,
+            "collaboration": null,
+            "course_assignments_menu": null,
+            "course_home_sub_navigation": null,
+            "course_navigation": {
+              "url": "https://signon-stage.smarterservices.com/v1/auth/lti?account=canvas",
+              "text": "Proctoring",
+              "visibility": "public",
+              "default": "enabled",
+              "enabled": "true",
+              "label": "Proctoring",
+              "selection_width": 800,
+              "selection_height": 400,
+              "icon_url": ""
+            },
+            "course_settings_sub_navigation": null,
+            "discussion_topic_menu": null,
+            "editor_button": null,
+            "file_menu": null,
+            "global_navigation": null,
+            "homework_submission": null,
+            "link_selection": null,
+            "migration_selection": null,
+            "module_menu": null,
+            "post_grades": null,
+            "quiz_menu": null,
+            "resource_selection": null,
+            "tool_configuration": null,
+            "user_navigation": null,
+            "wiki_page_menu": null,
+            "icon_url": "",
+            "not_selectable": false
+          },
+          {
+            "id": 27,
+            "domain": null,
+            "url": "https://signon.smarterservices.com/v1/auth/lti",
+            "consumer_key": "d",
+            "name": "Proctoring Course only",
+            "description": "",
+            "created_at": "2018-02-19T16:55:00Z",
+            "updated_at": "2018-02-19T16:55:00Z",
+            "privacy_level": "public",
+            "custom_fields": {},
+            "workflow_state": "public",
+            "vendor_help_link": null,
+            "account_navigation": null,
+            "similarity_detection": null,
+            "assignment_menu": null,
+            "assignment_selection": null,
+            "collaboration": null,
+            "course_assignments_menu": null,
+            "course_home_sub_navigation": null,
+            "course_navigation": null,
+            "course_settings_sub_navigation": null,
+            "discussion_topic_menu": null,
+            "editor_button": null,
+            "file_menu": null,
+            "global_navigation": null,
+            "homework_submission": null,
+            "link_selection": null,
+            "migration_selection": null,
+            "module_menu": null,
+            "post_grades": null,
+            "quiz_menu": null,
+            "resource_selection": null,
+            "tool_configuration": null,
+            "user_navigation": null,
+            "wiki_page_menu": null,
+            "icon_url": "",
+            "not_selectable": false
+          }
+        ]
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "accountId": "456"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "accountId": "789"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      }
+    }
+  },
+  "getExam": {
+    "endpoint": "/api/v1/courses/{courseId}/quizzes/{quizId}",
+    "method": "GET",
+    "requests": {
+      "valid": {
+        "statusCode": 200,
+        "params": {
+          "courseId": "123",
+          "quizId": "321"
+        },
+        "response": {
+          "id": 2,
+          "title": "Final Exam",
+          "html_url": "https://smarterservices.instructure.com/courses/1/quizzes/2",
+          "mobile_url": "https://smarterservices.instructure.com/courses/1/quizzes/2?force_user=1&persist_headless=1",
+          "description": "<p>This is your final exam, ensure you do well!</p>",
+          "quiz_type": "assignment",
+          "time_limit": 90,
+          "shuffle_answers": false,
+          "show_correct_answers": true,
+          "scoring_policy": "keep_highest",
+          "allowed_attempts": 1,
+          "one_question_at_a_time": false,
+          "question_count": 0,
+          "points_possible": 0,
+          "cant_go_back": false,
+          "access_code": "final-time",
+          "ip_filter": null,
+          "due_at": "2017-12-01T04:59:59Z",
+          "lock_at": "2017-12-01T04:59:59Z",
+          "unlock_at": "2017-11-21T05:00:00Z",
+          "published": true,
+          "unpublishable": true,
+          "locked_for_user": true,
+          "lock_info": {
+            "asset_string": "quizzes:quiz_2",
+            "lock_at": "2017-12-01T04:59:59Z",
+            "can_view": true
+          },
+          "lock_explanation": "This quiz was locked Nov 30, 2017 at 11:59pm.",
+          "hide_results": null,
+          "show_correct_answers_at": null,
+          "hide_correct_answers_at": null,
+          "all_dates": [
+            {
+              "due_at": "2017-12-01T04:59:59Z",
+              "unlock_at": "2017-11-21T05:00:00Z",
+              "lock_at": "2017-12-01T04:59:59Z",
+              "base": true
+            }
+          ],
+          "can_unpublish": true,
+          "can_update": true,
+          "require_lockdown_browser": false,
+          "require_lockdown_browser_for_results": false,
+          "require_lockdown_browser_monitor": false,
+          "lockdown_browser_monitor_data": null,
+          "speed_grader_url": "https://smarterservices.instructure.com/courses/1/gradebook/speed_grader?assignment_id=2",
+          "permissions": {
+            "read_statistics": true,
+            "manage": true,
+            "read": true,
+            "update": true,
+            "create": true,
+            "submit": true,
+            "preview": true,
+            "delete": true,
+            "grade": true,
+            "review_grades": true,
+            "view_answer_audits": false
+          },
+          "quiz_reports_url": "https://smarterservices.instructure.com/api/v1/courses/1/quizzes/2/reports",
+          "quiz_statistics_url": "https://smarterservices.instructure.com/api/v1/courses/1/quizzes/2/statistics",
+          "message_students_url": "https://smarterservices.instructure.com/api/v1/courses/1/quizzes/2/submission_users/message",
+          "section_count": 1,
+          "quiz_submission_versions_html_url": "https://smarterservices.instructure.com/courses/1/quizzes/2/submission_versions",
+          "assignment_id": 2,
+          "one_time_results": false,
+          "only_visible_to_overrides": false,
+          "assignment_group_id": 1,
+          "show_correct_answers_last_attempt": false,
+          "version_number": 3,
+          "question_types": [],
+          "has_access_code": true,
+          "post_to_sis": false
+        }
+      },
+      "invalid": {
+        "statusCode": 400,
+        "params": {
+          "courseId": "456",
+          "quizId": "123"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Failed"
+            }
+          ]
+        }
+      },
+      "unauthorized": {
+        "statusCode": 401,
+        "params": {
+          "courseId": "789",
+          "quizId": "123"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "Invalid access token."
+            }
+          ]
+        },
+        "headers": {
+          "status": "401 Unauthorized"
+        }
+      },
+      "notFound": {
+        "statusCode": 404,
+        "params": {
+          "courseId": "456",
+          "quizId": "123"
+        },
+        "response": {
+          "errors": [
+            {
+              "message": "The specified resource does not exist."
+            }
+          ]
         }
       }
     }

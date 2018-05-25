@@ -85,7 +85,47 @@ const schema = {
         .description('Canvas client Course ID')
     })
     .required()
-    .description('Course exam list schema')
+    .description('Course exam list schema'),
+  accountExternalTools: joi
+    .object({
+      accountId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client account ID')
+    })
+    .required()
+    .description('Get external tool by account'),
+  getExam: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client Course ID'),
+      quizId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client quiz ID')
+    })
+    .required()
+    .description('Course exam get schema'),
+
+  getCourseDetails: joi
+    .object({
+      courseId: joi
+        .number()
+        .integer()
+        .positive()
+        .required()
+        .description('Canvas client Course ID')
+    })
+    .required()
+    .description('Course course details from canvas')
 };
 
 module.exports = schema;

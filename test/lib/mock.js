@@ -16,7 +16,7 @@ module.exports = {
    * @param {Object} request.response - The request response payload
    * @return {Object}
    */
-  mockCanvasEndpoint(host, request, endpoint, perPage) {
+  mockCanvasEndpoint(host, request, endpoint, perPage, shouldPaginate = true) {
     const path = buildUrl(endpoint, request.params);
 
     // There must be at least one page
@@ -36,6 +36,66 @@ module.exports = {
       const headerLink = [currentPage, nextPage, firstPage, lastPage].join(',');
 
       const query = {};
+      if (i !== 0) {
+        query['per_page'] = internalPerPage;
+        query.page = i + 1;
+      } else if (i === 0 && perPage) {
+        query['per_page'] = perPage;
+      }
+
+      // For error cases, response is usually  object instead of array
+      const response = Array.isArray(request.response)
+        ? request.response.slice(i * internalPerPage, (i + 1) * internalPerPage)
+        : request.response;
+
+
+      const headers = Object.assign({}, request.headers);
+
+      if (shouldPaginate) {
+        headers.link = headerLink;
+      }
+      const interceptor = nock(host)
+        .persist()
+        .get(path)
+        .query(query)
+        .reply(request.statusCode, response, headers);
+
+      interceptors.push(interceptor);
+    }
+
+    return interceptors;
+  },
+
+  /**
+   * Mock canvas course users
+   * @param {string} host - Host address of canvas
+   * @param {integer} perPage - Amount of items per page
+   * @param {Object} request - The request details
+   * @param {integer} request.statusCode - The status code of response of the request
+   * @param {Object} request.params - Request path parameters
+   * @param {Object} request.response - The request response payload
+   * @return {Object}
+   */
+  mockCourseUsers(host, request, endpoint, perPage) {
+    const path = buildUrl(endpoint, request.params);
+
+    // There must be at least one page
+    const pageCount = Math.ceil(request.response.length / perPage) || 1;
+
+    const fullPath = host + path;
+    const interceptors = [];
+
+    const internalPerPage = perPage || 10;
+    for (let i = 0; i < pageCount; i++) {
+      // Create the links
+      const currentPage = `<${fullPath}?page=${i + 1}&per_page=${internalPerPage}&include[]=email>; rel="current"`;
+      const nextPage = `<${fullPath}?page=${Math.min(i + 2, pageCount)}&per_page=${internalPerPage}&include[]=email>; rel="next"`;
+      const firstPage = `<${fullPath}?page=${1}&per_page=${internalPerPage}&include[]=email>; rel="first"`;
+      const lastPage = `<${fullPath}?page=${pageCount}&per_page=${internalPerPage}&include[]=email>; rel="last"`;
+
+      const headerLink = [currentPage, nextPage, firstPage, lastPage].join(',');
+
+      const query = {include: ['email']};
       if (i !== 0) {
         query['per_page'] = internalPerPage;
         query.page = i + 1;
