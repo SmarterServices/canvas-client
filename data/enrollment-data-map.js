@@ -16,7 +16,8 @@ const dataMap = {
   emailAddress: 'user.email',
   enrollmentState: 'enrollment_state',
   role: 'role',
-  rootAccountId: 'root_account_id'
+  rootAccountId: 'root_account_id',
+  sisUserId: 'sis_user_id'
 };
 
 
