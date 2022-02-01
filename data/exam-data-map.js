@@ -9,7 +9,8 @@ const dataMap = {
   attemptsAllowed: 'allowed_attempts',
   password: 'access_code',
   examOpenDate: 'unlock_at',
-  examCloseDate: 'lock_at'
+  examCloseDate: 'lock_at',
+  examDueDate: 'due_at'
 };
 
 
